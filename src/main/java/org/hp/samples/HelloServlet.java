@@ -18,10 +18,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ============================================================================= */
-
 package org.hp.samples;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -29,15 +31,49 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.*;
+
+
+
 public class HelloServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse res
+ponse) throws ServletException, IOException {
 		response.setContentType("text/plain");
 		response.setStatus(200);
 		PrintWriter writer = response.getWriter();
-		writer.println("Hello World! And Rajeev!");
+		writer.println("Hello World");
 		writer.close();
+		
+		HelloServlet demo = new HelloServlet("test");
+	    demo.addNames();
 	}
+	
+	  private Vector<String> names = new Vector<String>();
+	  private final InputStreamReader input;
+	  private final BufferedReader reader;
+	 
+	  public HelloServlet(String filename) throws IOException {
+	    this.input = new FileReader(filename);
+	    this.reader = new BufferedReader(input);
+	  }
+	  
+	 
+	  public void addNames() throws IOException {
+	    try {
+	      String newName;
+	      while (((newName = reader.readLine()) != null) &&
+	             !(newName.equalsIgnoreCase("quit"))) {
+	        names.addElement(newName);
+	        System.out.println("adding " + newName);
+	      }
+	    } finally {
+	      input.close();
+	    }
+	  }
+	
+
+
 }
