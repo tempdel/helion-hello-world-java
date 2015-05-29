@@ -44,7 +44,7 @@ ponse) throws ServletException, IOException {
 		response.setContentType("text/plain");
 		response.setStatus(200);
 		PrintWriter writer = response.getWriter();
-		writer.println("Hello World and Discover!!!");
+		writer.println("Hello World and Discover 2015!!!");
 		writer.close();
 		
 		HelloServlet demo = new HelloServlet("test");
