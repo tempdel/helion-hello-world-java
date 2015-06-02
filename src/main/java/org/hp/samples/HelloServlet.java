@@ -20,8 +20,6 @@ SOFTWARE.
 ============================================================================= */
 package org.hp.samples;
 
-//kick off build
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
